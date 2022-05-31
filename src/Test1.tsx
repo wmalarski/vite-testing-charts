@@ -1,5 +1,5 @@
 import { Input, Select } from "@chakra-ui/react";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+// eslint-disable-next-line import/no-unresolved
 import { LayoutType } from "recharts/types/util/types";
 
 const data = [
@@ -72,71 +73,85 @@ const curveTypes = [
   "stepAfter",
 ];
 
-const layoutTypes = ["horizontal", "vertical", "centric", "radial"];
-
-export const Test1 = () => {
+const layoutTypes: string[] = ["horizontal", "vertical", "centric", "radial"];
+export const Test1 = (): ReactElement => {
   const [curveType, setCurveType] = useState(curveTypes[0]);
   const [layoutType, setLayoutType] = useState(layoutTypes[0]);
   const [strokeDasharray, setStrokeDasharray] = useState("3 3");
 
+  // const isB = strokeDasharray == "4";
+
   return (
     <div style={{ height: "400px" }}>
-      <Select value={curveType} onChange={(e) => setCurveType(e.target.value)}>
-        {curveTypes.map((curve) => (
-          <option key={curve} value={curve}>
-            {curve}
-          </option>
-        ))}
+      <Select
+        onChange={(e) => {
+          setCurveType(e.target.value);
+        }}
+        value={curveType}
+      >
+        {curveTypes.map((curve) => {
+          return (
+            <option key={curve} value={curve}>
+              {curve}
+            </option>
+          );
+        })}
       </Select>
       <Select
+        onChange={(e) => {
+          setLayoutType(e.target.value);
+        }}
         value={layoutType}
-        onChange={(e) => setLayoutType(e.target.value)}
       >
-        {layoutTypes.map((curve) => (
-          <option key={curve} value={curve}>
-            {curve}
-          </option>
-        ))}
+        {layoutTypes.map((curve) => {
+          return (
+            <option key={curve} value={curve}>
+              {curve}
+            </option>
+          );
+        })}
       </Select>
       <Input
+        onChange={(e) => {
+          setStrokeDasharray(e.target.value);
+        }}
         value={strokeDasharray}
-        onChange={(e) => setStrokeDasharray(e.target.value)}
       />
-      <ResponsiveContainer width="100%" height="100%" debounce={0}>
+      <ResponsiveContainer debounce={0} height="100%" width="100%">
         <LineChart
-          layout={layoutType as LayoutType}
-          width={500}
-          height={300}
           data={data}
-          onClick={(state, e) => {
-            console.log({ state, e });
-          }}
+          height={300}
+          layout={layoutType as LayoutType}
           margin={{
             top: 5,
             right: 30,
             left: 20,
             bottom: 5,
           }}
+          onClick={(state, e) => {
+            console.log({ state, e });
+          }}
+          width={500}
         >
           <CartesianGrid
-            stopColor="green"
-            color="yellow"
             accentHeight={50}
             allowReorder="yes"
-            strokeDasharray={strokeDasharray}
+            color="yellow"
             fill="black"
+            stopColor="green"
+            strokeDasharray={strokeDasharray}
           />
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
           <Legend />
           <Line
-            type={curveType}
+            activeDot={{ r: 8 }}
             dataKey="pv"
             stroke="#8884d8"
-            activeDot={{ r: 8 }}
+            type={curveType}
           />
-          <Line type={curveType} dataKey="uv" stroke="#82ca9d" />
+          <Line dataKey="uv" stroke="#82ca9d" type={curveType} />
         </LineChart>
       </ResponsiveContainer>
     </div>
