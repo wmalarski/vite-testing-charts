@@ -6,6 +6,26 @@ This is placeholder. Project info.
 
 ### How to run project locally?
 
+## Project structure
+
+* `assets`
+
+* `components`
+
+* `hooks`
+
+* `modules`
+
+* `routes`
+
+* `services`
+
+* `styles`
+
+* `tests`
+
+* `utils`
+
 ## Scripts
 
 ### Basic scripts
@@ -65,3 +85,5 @@ This is placeholder. Project info.
 ### Create service
 
 ## Rules
+
+## Resources
