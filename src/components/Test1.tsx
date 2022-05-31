@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-// eslint-disable-next-line import/no-unresolved
 import { LayoutType } from "recharts/types/util/types";
 
 const data = [

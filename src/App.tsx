@@ -1,5 +1,5 @@
+import { Test1 } from "@components/Test1";
 import { ReactElement } from "react";
-import { Test1 } from "./Test1";
 
 const App = (): ReactElement => {
   return (
