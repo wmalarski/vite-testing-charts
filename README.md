@@ -6,6 +6,8 @@ This is placeholder. Project info.
 
 ### How to run project locally?
 
+### Install recommended vscode plugins
+
 ## Project structure
 
 * `assets`
