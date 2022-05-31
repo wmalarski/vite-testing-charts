@@ -126,7 +126,7 @@ Integration:
   before_script:
     - yarn install --frozen-lockfile --cache-folder .yarn
   script:
-    - VITE_GIT_TAG=`echo $CI_COMMIT_TAG` VITE_BASE_URL='ds' yarn build
+    - VITE_GIT_TAG=`echo $CI_COMMIT_TAG` VITE_BASE_URL='int' yarn build
     - echo 'Deploy dist to integration'
   only:
     - tags
@@ -144,7 +144,7 @@ Production:
   before_script:
     - yarn install --frozen-lockfile --cache-folder .yarn
   script:
-    - VITE_GIT_TAG=`echo $CI_COMMIT_TAG` VITE_BASE_URL='ms' yarn build
+    - VITE_GIT_TAG=`echo $CI_COMMIT_TAG` VITE_BASE_URL='prod' yarn build
     - echo 'Deploy dist to production'
   only:
     - tags
@@ -163,7 +163,6 @@ Storybook:
     - yarn install --frozen-lockfile --cache-folder .yarn
   script:
     - yarn build-storybook
-    - ls
     - echo 'Deploy storybook-static to storybook'
   only:
     - main

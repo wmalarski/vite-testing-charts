@@ -2,6 +2,14 @@
 
 This is placeholder. Project info.
 
+## Links
+
+* Figma
+
+* JIRA
+
+* Docs
+
 ## Project setup
 
 ### How to run project locally?
@@ -56,9 +64,25 @@ This is placeholder. Project info.
 
 * `yarn test:ui`
 
+### Storybook
+
+* `yarn storybook`
+
+* `yarn build-storybook`
+
+### Codegen
+
+* `yarn create`
+
 ## Branches
 
 ## Merge requests
+
+### Template
+
+### Code review
+
+All team members
 
 ## Pipelines
 
@@ -98,6 +122,28 @@ This is placeholder. Project info.
 
 ### Create service
 
-## Rules
-
 ## Resources
+
+### `typescript`
+
+### `react`
+
+### `react-query`
+
+### `chakra-ui`
+
+### `msw`
+
+### `recharts`
+
+### `translations`
+
+### `vite`
+
+### `storybook`
+
+### `tests`
+
+### `eslint`
+
+### `prettier`
