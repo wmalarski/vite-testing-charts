@@ -46,6 +46,14 @@ This is placeholder. Project info.
 
 * `yarn code-check`
 
+### Tests
+
+* `yarn coverage`
+
+* `yarn test`
+
+* `yarn test:ui`
+
 ## Branches
 
 ## Merge requests
@@ -59,7 +67,9 @@ This is placeholder. Project info.
 ### Lint and Test
 
 * `Lint`:
+
 * `Test`:
+
 * `Coverage`:
 
 ### Build
@@ -69,7 +79,9 @@ This is placeholder. Project info.
 ### Deploy
 
 * `Development`:
+
 * `Integration`:
+
 * `Production`:
 
 ### Storybook
