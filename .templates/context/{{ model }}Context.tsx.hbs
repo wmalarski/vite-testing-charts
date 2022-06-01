@@ -1,0 +1,56 @@
+import {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useMemo,
+} from "react";
+import { QueryFunction } from "react-query";
+
+export type {{ model }}Value = {
+  data?: string;
+};
+
+type {{ model }}ContextValue =
+  | {
+      isInitialized: false;
+    }
+  | {
+      isInitialized: true;
+      value: {{ model }}Value;
+    };
+
+export const {{ model }}Context = createContext<{{ model }}ContextValue>({
+  isInitialized: false,
+});
+
+export const use{{ model }}Context = (): {{ model }}Value => {
+  const context = useContext({{ model }}Context);
+
+  if (!context.isInitialized) {
+    throw new Error("{{ model }} context not defined");
+  }
+
+  return context.value;
+};
+
+type Props = {
+  children: ReactNode;
+};
+
+export const {{ model }}ContextProvider = ({ children }: Props): ReactElement => {
+  const value = useMemo<{{ model }}ContextValue>(() => {
+    return {
+      isInitialized: true,
+      value: {
+        data: "",
+      },
+    };
+  }, []);
+
+  return (
+    <{{ model }}Context.Provider value={value}>
+      {children}
+    </{{ model }}Context.Provider>
+  );
+};

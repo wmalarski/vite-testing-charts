@@ -1,16 +1,12 @@
-import { ReactElement } from "react";
-import { useTranslation } from "react-i18next";
+import type { ComponentStyleConfig } from '@chakra-ui/theme'
 
-type Props = {
-  data?: string;
-};
-
-export const {{ basename path }} = ({ data }: Props): ReactElement => {
-  const { t } = useTranslation("common");
-  return (
-    <div>
-      <p>{t("{{ basename path }}")}</p>
-      <div>{data}</div>
-    </div>
-  );
+export const {{ basename path }}: ComponentStyleConfig = {
+  // Styles for the base style
+  baseStyle: {},
+  // Styles for the size variations
+  sizes: {},
+  // Styles for the visual style variations
+  variants: {},
+  // The default `size` or `variant` values
+  defaultProps: {},
 };
