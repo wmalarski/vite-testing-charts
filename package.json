@@ -26,10 +26,12 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "framer-motion": "^6",
+    "i18next": "^21.8.5",
     "plop": "^3.1.0",
     "prettier": "^2.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-i18next": "^11.16.9",
     "recharts": "^2.1.10"
   },
   "devDependencies": {

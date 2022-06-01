@@ -36,6 +36,28 @@ This is placeholder. Project info.
 
 * `utils`
 
+## Components structure
+
+## Translations
+
+## Branches
+
+## Merge requests
+
+### Template
+
+### Code review
+
+All team members
+
+## Code generators
+
+### Create primitive
+
+### Create component
+
+### Create service
+
 ## Scripts
 
 ### Basic scripts
@@ -64,7 +86,7 @@ This is placeholder. Project info.
 
 * `yarn test:ui`
 
-### Storybook
+### Stories
 
 * `yarn storybook`
 
@@ -73,16 +95,6 @@ This is placeholder. Project info.
 ### Codegen
 
 * `yarn create`
-
-## Branches
-
-## Merge requests
-
-### Template
-
-### Code review
-
-All team members
 
 ## Pipelines
 
@@ -113,14 +125,6 @@ All team members
 ### Storybook
 
 * `Storybook`:
-
-## Code generators
-
-### Create primitive
-
-### Create component
-
-### Create service
 
 ## Resources
 
