@@ -1,0 +1,18 @@
+import { {{ component }} } from "@chakra-ui/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentProps } from "react";
+
+export default {
+  title: "styles/{{ component }}",
+  component: {{ component }},
+} as ComponentMeta<typeof {{ component }}>;
+
+type Props = ComponentProps<typeof {{ component }}>;
+
+const {{ component }}Story = (props: Props) => {
+  return <{{ component }} {...props} />;
+};
+
+const Story: ComponentStory<typeof {{ component }}Story> = {{ component }}Story;
+export const Playground = Story.bind({});
+Playground.args = {};

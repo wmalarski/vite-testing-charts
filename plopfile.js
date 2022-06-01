@@ -62,20 +62,34 @@ module.exports = (plop) => {
   });
 
   plop.setGenerator("primitive", {
-    description: "React.js Component",
+    description: "React.js Primitive",
     prompts: [
       {
         type: "input",
-        name: "path",
-        message: "Component path",
+        name: "component",
+        message: "Component name",
       },
     ],
     actions: [
       {
         type: "addMany",
-        destination: "src/{{path}}",
-        base: `.templates/component`,
-        templateFiles: `.templates/component/*.hbs`,
+        destination: "src/styles/components/{{component}}",
+        base: `.templates/primitive`,
+        templateFiles: `.templates/primitive/*.hbs`,
+      },
+      {
+        type: "modify",
+        path: "src/styles/theme.ts",
+        pattern: /components: \{/,
+        template: "components: { {{ component }},",
+      },
+      {
+        type: "modify",
+        path: "src/styles/theme.ts",
+        pattern: /^/,
+        template: `
+        import { {{component}} } from "./components/{{component}}/{{component}}";
+        `,
       },
     ],
   });
