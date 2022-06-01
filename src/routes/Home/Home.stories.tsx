@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
-import { Home } from "./Home";
+import Home from "./Home";
 
 export default {
   title: "routes/Home",

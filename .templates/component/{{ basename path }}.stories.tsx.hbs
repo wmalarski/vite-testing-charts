@@ -1,16 +1,23 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
+{{#if isDefaultExport}}
+import {{ basename path }} from "./{{ basename path }}";
+{{else}}
 import { {{ basename path }} } from "./{{ basename path }}";
+{{/if}}
 
 export default {
   title: "{{ path }}",
-  component: {{ basename path }}
+  component: {{ basename path }},
 } as ComponentMeta<typeof {{ basename path }}>;
 
 type Props = ComponentProps<typeof {{ basename path }}>;
 
-const {{ basename path }}Story = ({ wrapperProps, ...props }: PropsWithTestWrapper<Props>) => {
+const {{ basename path }}Story = ({
+  wrapperProps,
+  ...props
+}: PropsWithTestWrapper<Props>) => {
   return (
     <TestWrapper {...wrapperProps}>
       <{{ basename path }} {...props} />

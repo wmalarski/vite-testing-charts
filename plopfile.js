@@ -9,6 +9,66 @@ module.exports = (plop) => {
         name: "path",
         message: "Component path",
       },
+      {
+        type: "list",
+        name: "export",
+        choices: ["named", "default"],
+        default: "named",
+        message: "Export type",
+      },
+    ],
+    actions: (args) => [
+      {
+        type: "addMany",
+        destination: "src/{{path}}",
+        base: ".templates/component",
+        templateFiles: ".templates/component/*.hbs",
+        data: { isDefaultExport: args.export === "default" },
+      },
+    ],
+  });
+
+  plop.setGenerator("context", {
+    description: "React.js Context",
+    prompts: [
+      {
+        type: "input",
+        name: "path",
+        message: "Context path",
+      },
+      {
+        type: "list",
+        name: "kind",
+        choices: ["simple", "service"],
+        default: "simple",
+        message: "Context kind",
+      },
+      {
+        type: "input",
+        name: "model",
+        message: "Service model name",
+        when: (args) => args.kind === "service",
+      },
+    ],
+    actions: (args) => [
+      {
+        type: "add",
+        path: "src/{{path}}.tsx",
+        templateFile: ".templates/context/Context.tsx.hbs",
+        data: { isSimple: args.kind === "simple" },
+        force: true,
+      },
+    ],
+  });
+
+  plop.setGenerator("primitive", {
+    description: "React.js Component",
+    prompts: [
+      {
+        type: "input",
+        name: "path",
+        message: "Component path",
+      },
     ],
     actions: [
       {
@@ -18,28 +78,5 @@ module.exports = (plop) => {
         templateFiles: `.templates/component/*.hbs`,
       },
     ],
-  });
-
-  plop.setGenerator("service", {
-    description: "React.js Service",
-    prompts: [
-      {
-        type: "input",
-        name: "model",
-        message: "Model name",
-      },
-    ],
-    actions: () => {
-      const api = require("./swagger/api.json");
-      console.log(api.tags);
-      return [
-        // {
-        //   type: "addMany",
-        //   destination: "src/services",
-        //   base: `.templates/service`,
-        //   templateFiles: `.templates/service/*.hbs`,
-        // },
-      ];
-    },
   });
 };

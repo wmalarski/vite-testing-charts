@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import { i18text } from "@tests/i18text";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
-import { Home } from "./Home";
+import Home from "./Home";
 
 type Props = ComponentProps<typeof Home>;
 
