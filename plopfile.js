@@ -5,16 +5,16 @@ module.exports = (plop) => {
     description: "React.js Component",
     prompts: [
       {
-        type: "input",
-        name: "path",
-        message: "Component path",
-      },
-      {
         type: "list",
         name: "export",
         choices: ["named", "default"],
         default: "named",
         message: "Export type",
+      },
+      {
+        type: "input",
+        name: "path",
+        message: "Component path",
       },
     ],
     actions: (args) => [
@@ -32,16 +32,16 @@ module.exports = (plop) => {
     description: "React.js Context",
     prompts: [
       {
-        type: "input",
-        name: "path",
-        message: "Context path",
-      },
-      {
         type: "list",
         name: "kind",
         choices: ["simple", "service"],
         default: "simple",
         message: "Context kind",
+      },
+      {
+        type: "input",
+        name: "path",
+        message: "Context path",
       },
       {
         type: "input",

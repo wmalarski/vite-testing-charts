@@ -2,7 +2,7 @@
 
 This is placeholder. Project info.
 
-## Links
+## 🔗 Links
 
 * Figma
 
@@ -10,15 +10,13 @@ This is placeholder. Project info.
 
 * Docs
 
-## Project setup
+## 🎉 Project setup
 
 ### How to run project locally?
 
 ### Install recommended vscode plugins
 
-## Project structure
-
-* `assets`
+## 📁 Project structure
 
 * `components`
 
@@ -36,13 +34,34 @@ This is placeholder. Project info.
 
 * `utils`
 
-## Components structure
+## ⛏️ Components structure
 
-## Translations
+Components should have structure:
 
-## Branches
+>>>
+* ChildComponent
+  * ChildComponent.stories.tsx
+  * ChildComponent.test.tsx
+  * ChildComponent.tsx
+* Component.stories.tsx
+* Component.test.tsx
+* Component.tsx
+* Component.utils.tsx
+>>>
 
-## Merge requests
+## 📖 Translations
+
+i18next
+
+locales
+
+## 🎨 Static assets
+
+[static assets](https://vitejs.dev/guide/assets.html)
+
+## 👷 Branches
+
+## 👨‍💻 Merge requests
 
 ### Template
 
@@ -50,15 +69,45 @@ This is placeholder. Project info.
 
 All team members
 
-## Code generators
-
-### Create primitive
+## 🔥 Code generators
 
 ### Create component
 
-### Create service
+* To create component `Sidebar` in `routes/Home` folder with named export (preferred) run:
 
-## Scripts
+  `yarn codegen component named routes/Home/Sidebar`
+
+* To create component `Dashboard` in `routes` folder with default export run:
+
+  `yarn codegen component default routes/Dashboard`
+
+### Create primitive
+
+* To create primitive based on `Button` component from `chakra-ui` run:
+
+  `yarn codegen primitive Button`
+
+### Create context
+
+* To create simple context `UserContext` in `utils` folder run:
+
+  `yarn codegen context simple utils/UserContext`
+
+* To create service context `ProfileService` in `services` folder with model `Profile`:
+
+  `yarn codegen context service services/ProfileService`
+
+  **How to use services?**
+
+  ```ts
+  const profileService = useProfileService();
+  const { data } = useQuery(
+    profileService.key(id),
+    profileService.get,
+  );
+  ```
+
+## 🧰 Scripts
 
 ### Basic scripts
 
@@ -94,9 +143,9 @@ All team members
 
 ### Codegen
 
-* `yarn create`
+* `yarn codegen`
 
-## Pipelines
+## 🚀 Pipelines
 
 ### Install
 
@@ -126,28 +175,32 @@ All team members
 
 * `Storybook`:
 
-## Resources
+## 📚 Resources
 
-### `typescript`
+### typescript
 
-### `react`
+### react
 
-### `react-query`
+### react-query
 
-### `chakra-ui`
+### react-router
 
-### `msw`
+### chakra-ui
 
-### `recharts`
+### msw
 
-### `translations`
+### recharts
 
-### `vite`
+### translations
 
-### `storybook`
+### vite.js
 
-### `tests`
+### storybook
 
-### `eslint`
+### tests
 
-### `prettier`
+### eslint
+
+### prettier
+
+### plop
