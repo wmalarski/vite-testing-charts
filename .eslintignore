@@ -32,3 +32,4 @@ npm-debug.log.*
 dist
 vite.config.ts
 plopfile.js
+public/mockServiceWorker.js

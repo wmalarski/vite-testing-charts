@@ -71,10 +71,6 @@ module.exports = {
         },
       },
     ],
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      { ignoreArrayIndexes: true },
-    ],
     "@typescript-eslint/no-unused-expressions": [
       "error",
       { enforceForJSX: true },
