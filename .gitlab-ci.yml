@@ -144,7 +144,7 @@ Production:
   before_script:
     - yarn install --frozen-lockfile --cache-folder .yarn
   script:
-    - VITE_GIT_TAG=`echo $CI_COMMIT_TAG` VITE_BASE_URL='prod' yarn build
+    - VITE_BASE_URL='prod' yarn build
     - echo 'Deploy dist to production'
   only:
     - tags

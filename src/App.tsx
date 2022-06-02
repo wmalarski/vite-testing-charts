@@ -1,4 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { VersionLabel } from "@components/VersionLabel/VersionLabel";
 import { Router } from "@routes/Router";
 import { theme } from "@styles/theme";
 import i18next from "@utils/i18next";
@@ -13,6 +14,7 @@ const App = (): ReactElement => {
       <I18nextProvider i18n={i18next}>
         <ChakraProvider theme={theme}>
           <Router />
+          <VersionLabel />
         </ChakraProvider>
       </I18nextProvider>
     </QueryClientProvider>
