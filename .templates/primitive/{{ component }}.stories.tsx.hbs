@@ -1,15 +1,15 @@
-import { {{ component }} } from "@chakra-ui/react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { ComponentProps } from "react";
+import { {{ component }}, ThemingProps } from "@chakra-ui/react";
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { rawTheme } from "../../theme";
 
 export default {
   title: "styles/{{ component }}",
   component: {{ component }},
+  argTypes: getThemingArgTypes(rawTheme, "{{ component }}"),
 } as ComponentMeta<typeof {{ component }}>;
 
-type Props = ComponentProps<typeof {{ component }}>;
-
-const {{ component }}Story = (props: Props) => {
+const {{ component }}Story = (props: ThemingProps<"{{ component }}">) => {
   return <{{ component }} {...props} />;
 };
 
