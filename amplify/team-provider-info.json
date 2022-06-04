@@ -10,6 +10,11 @@
       "StackName": "amplify-vitetestingcharts-dev-122604",
       "StackId": "arn:aws:cloudformation:eu-central-1:286728445653:stack/amplify-vitetestingcharts-dev-122604/be77ef30-e3f0-11ec-9feb-02a222354766",
       "AmplifyAppId": "d216zw9leuoa5m"
+    },
+    "categories": {
+      "auth": {
+        "vitetestingchartsc8d475be": {}
+      }
     }
   }
 }
