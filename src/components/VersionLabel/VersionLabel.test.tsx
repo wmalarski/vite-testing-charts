@@ -2,20 +2,12 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
-import { ComponentProps } from "react";
 import { VersionLabel } from "./VersionLabel";
 
-type Props = ComponentProps<typeof VersionLabel>;
-
-const renderComponent = ({
-  wrapperProps,
-  ...props
-}: PropsWithTestWrapper<Partial<Props>> = {}) => {
-  const defaultProps: Props = {};
-
+const renderComponent = ({ wrapperProps }: PropsWithTestWrapper = {}) => {
   return render(
     <TestWrapper {...wrapperProps}>
-      <VersionLabel {...defaultProps} {...props} />
+      <VersionLabel />
     </TestWrapper>
   );
 };

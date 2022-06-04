@@ -50,12 +50,12 @@ export const AuthServiceProvider = ({ children }: Props): ReactElement => {
     return {
       isInitialized: true,
       value: {
-        get: async ({ queryKey }) => {
-          const result = await Promise.resolve({ id: queryKey[1] });
-          return result;
+        login: () => {
+          // const result = await Promise.resolve({ id: queryKey[1] });
+          // return result;
         },
-        key: (id) => {
-          return ["user", id];
+        logout: () => {
+          // return ["user", id];
         },
       },
     };
