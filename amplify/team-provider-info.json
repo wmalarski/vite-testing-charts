@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vitetestingcharts-dev-122604-authRole",
+      "UnauthRoleArn": "arn:aws:iam::286728445653:role/amplify-vitetestingcharts-dev-122604-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::286728445653:role/amplify-vitetestingcharts-dev-122604-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-vitetestingcharts-dev-122604-deployment",
+      "UnauthRoleName": "amplify-vitetestingcharts-dev-122604-unauthRole",
+      "StackName": "amplify-vitetestingcharts-dev-122604",
+      "StackId": "arn:aws:cloudformation:eu-central-1:286728445653:stack/amplify-vitetestingcharts-dev-122604/be77ef30-e3f0-11ec-9feb-02a222354766",
+      "AmplifyAppId": "d216zw9leuoa5m"
+    }
+  }
+}

@@ -22,9 +22,11 @@
     "codegen": "plop"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^2.19.0",
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "aws-amplify": "^4.3.24",
     "framer-motion": "^6",
     "i18next": "^21.8.5",
     "react": "^18.0.0",
