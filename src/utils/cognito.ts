@@ -66,8 +66,6 @@ export const signUpUserWithEmail = ({
   });
 };
 
-userPool.getCurrentUser();
-
 export type VerifyCodeArgs = {
   username: string;
   code: string;

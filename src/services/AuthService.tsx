@@ -1,21 +1,27 @@
-import { getSession } from "@utils/cognito";
+import {
+  getSession,
+  signInWithEmail,
+  SignInWithEmailArgs,
+  signOut,
+  signUpUserWithEmail,
+  SignUpUserWithEmailArgs,
+  verifyCode,
+  VerifyCodeArgs,
+} from "@utils/cognito";
 import {
   createContext,
   ReactElement,
   ReactNode,
+  useCallback,
   useContext,
   useMemo,
 } from "react";
-import { useQuery } from "react-query";
-
-type UserId = string;
-
-export type User = {
-  id: UserId;
-  data?: string;
-};
+import { useQuery, useQueryClient } from "react-query";
 
 export type AuthServiceState =
+  | {
+      status: "loading";
+    }
   | {
       status: "signedIn";
       accessToken: string;
@@ -26,8 +32,12 @@ export type AuthServiceState =
     };
 
 export type AuthServiceValue = {
-  login: () => void;
-  logout: () => void;
+  fetcher: (input: RequestInfo, init?: RequestInit) => Promise<Response>;
+  signIn: (args: SignInWithEmailArgs) => Promise<void>;
+  signOut: () => Promise<void>;
+  signUp: (args: SignUpUserWithEmailArgs) => Promise<void>;
+  state: AuthServiceState;
+  verifyCode: (args: VerifyCodeArgs) => Promise<void>;
 };
 
 type AuthServiceNullableValue =
@@ -53,13 +63,23 @@ export const useAuthService = (): AuthServiceValue => {
   return context.value;
 };
 
-type Props = {
-  children: ReactNode;
+export const getSessionQueryKey = (): string[] => {
+  return ["session"];
 };
 
-export const AuthServiceProvider = ({ children }: Props): ReactElement => {
-  const { data, isLoading } = useQuery(
-    ["session"],
+type Props = {
+  children: ReactNode;
+  onSignOut: () => void;
+};
+
+export const AuthServiceProvider = ({
+  children,
+  onSignOut,
+}: Props): ReactElement => {
+  const client = useQueryClient();
+
+  const { data } = useQuery(
+    getSessionQueryKey(),
     async (): Promise<AuthServiceState> => {
       try {
         const session = await getSession();
@@ -68,39 +88,67 @@ export const AuthServiceProvider = ({ children }: Props): ReactElement => {
           accessToken: session.getAccessToken().getJwtToken(),
           refreshToken: session.getRefreshToken().getToken(),
         };
-      } catch {
+      } catch (err) {
+        // maybe here we can use refresh
         return { status: "signedOut" };
       }
     },
     {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      initialData: { status: "loading" },
       onSuccess: (result) => {
-        if (result.status !== "signedIn") {
-          return;
+        if (result.status === "signedIn") {
+          window.localStorage.setItem("accessToken", `${result.accessToken}`);
+          window.localStorage.setItem("refreshToken", `${result.refreshToken}`);
+        } else if (result.status === "signedOut") {
+          onSignOut();
         }
-        window.localStorage.setItem("accessToken", `${result.accessToken}`);
-        window.localStorage.setItem("refreshToken", `${result.refreshToken}`);
       },
     }
   );
 
-  // const fetcher = useCallback(() => {
-
-  // }, []);
+  const fetcher = useCallback(
+    async (input: RequestInfo, init?: RequestInit): Promise<Response> => {
+      console.log({ data });
+      const response = await fetch(input, init);
+      // check for rejected request
+      console.log({ status: response.status });
+      return response;
+    },
+    [data]
+  );
 
   const value = useMemo<AuthServiceNullableValue>(() => {
     return {
       isInitialized: true,
       value: {
-        login: () => {
-          // const result = await Promise.resolve({ id: queryKey[1] });
-          // return result;
+        fetcher,
+        signIn: async (args) => {
+          const session = await signInWithEmail(args);
+          client.setQueryData<AuthServiceState>(getSessionQueryKey(), {
+            status: "signedIn",
+            accessToken: session.getAccessToken().getJwtToken(),
+            refreshToken: session.getRefreshToken().getToken(),
+          });
         },
-        logout: () => {
-          // return ["user", id];
+        signOut: async () => {
+          await signOut();
+          client.setQueryData<AuthServiceState>(getSessionQueryKey(), {
+            status: "signedOut",
+          });
+        },
+        signUp: async (args) => {
+          await signUpUserWithEmail(args);
+        },
+        state: data ?? { status: "loading" },
+        verifyCode: async (args) => {
+          await verifyCode(args);
         },
       },
     };
-  }, []);
+  }, [client, data, fetcher]);
 
   return <AuthService.Provider value={value}>{children}</AuthService.Provider>;
 };
