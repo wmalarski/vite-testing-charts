@@ -127,8 +127,8 @@ export const Test1 = (): ReactElement => {
             left: 20,
             bottom: 5,
           }}
-          onClick={(state, e) => {
-            console.log({ state, e });
+          onClick={() => {
+            // console.log({ state, e });
           }}
           width={500}
         >

@@ -12,6 +12,10 @@ This is placeholder. Project info.
 
 ## 🎉 Project setup
 
+1. Install node
+
+2. Install yarn
+
 ### How to run project locally?
 
 ### Install recommended vscode plugins
@@ -109,13 +113,17 @@ All team members
 
 ## 🧰 Scripts
 
+In the project directory, you can run:
+
 ### Basic scripts
 
-* `yarn dev`
+* `yarn dev` - Runs the app in the development mode. Open http://localhost:3000 to view it in the browser. The page will reload if you make edits. You will also see any lint errors in the console.
 
-* `yarn build`
+* `yarn build` - Builds the app for production to the `dist` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+App is ready to be deployed!
 
-* `yarn preview`
+* `yarn preview` - Runs production build
 
 ### Linters
 
@@ -131,7 +139,7 @@ All team members
 
 * `yarn coverage`
 
-* `yarn test`
+* `yarn test` - Launches the test runner in the interactive watch mode.
 
 * `yarn test:ui`
 
@@ -175,6 +183,8 @@ All team members
 
 * `Storybook`:
 
+### How to deploy to integration or production?
+
 ## 📚 Resources
 
 ### typescript
@@ -185,13 +195,24 @@ All team members
 
 ### react-router
 
+### react-hook-form
+
+### yup
+
 ### chakra-ui
 
 ### msw
 
+### msw-data
+
 ### recharts
 
 ### translations
+
+### AWS cognito
+
+* [amazon cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
+* [amazon-cognito-identity-js](https://www.npmjs.com/package/amazon-cognito-identity-js)
 
 ### vite.js
 
