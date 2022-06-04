@@ -1,6 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { VersionLabel } from "@components/VersionLabel/VersionLabel";
 import { Router } from "@routes/Router";
+import { SessionServiceProvider } from "@services/SessionService";
 import { theme } from "@styles/theme";
 import i18next from "@utils/i18next";
 import { ReactElement, useState } from "react";
@@ -13,7 +14,9 @@ const App = (): ReactElement => {
     <QueryClientProvider client={client}>
       <I18nextProvider i18n={i18next}>
         <ChakraProvider theme={theme}>
-          <Router />
+          <SessionServiceProvider>
+            <Router />
+          </SessionServiceProvider>
           <VersionLabel />
         </ChakraProvider>
       </I18nextProvider>
