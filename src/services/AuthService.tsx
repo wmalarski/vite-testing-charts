@@ -1,3 +1,4 @@
+import { getSession } from "@utils/cognito";
 import {
   createContext,
   ReactElement,
@@ -5,6 +6,7 @@ import {
   useContext,
   useMemo,
 } from "react";
+import { useQuery } from "react-query";
 
 type UserId = string;
 
@@ -12,6 +14,16 @@ export type User = {
   id: UserId;
   data?: string;
 };
+
+export type AuthServiceState =
+  | {
+      status: "signedIn";
+      accessToken: string;
+      refreshToken: string;
+    }
+  | {
+      status: "signedOut";
+    };
 
 export type AuthServiceValue = {
   login: () => void;
@@ -46,6 +58,35 @@ type Props = {
 };
 
 export const AuthServiceProvider = ({ children }: Props): ReactElement => {
+  const { data, isLoading } = useQuery(
+    ["session"],
+    async (): Promise<AuthServiceState> => {
+      try {
+        const session = await getSession();
+        return {
+          status: "signedIn",
+          accessToken: session.getAccessToken().getJwtToken(),
+          refreshToken: session.getRefreshToken().getToken(),
+        };
+      } catch {
+        return { status: "signedOut" };
+      }
+    },
+    {
+      onSuccess: (result) => {
+        if (result.status !== "signedIn") {
+          return;
+        }
+        window.localStorage.setItem("accessToken", `${result.accessToken}`);
+        window.localStorage.setItem("refreshToken", `${result.refreshToken}`);
+      },
+    }
+  );
+
+  // const fetcher = useCallback(() => {
+
+  // }, []);
+
   const value = useMemo<AuthServiceNullableValue>(() => {
     return {
       isInitialized: true,

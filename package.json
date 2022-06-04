@@ -25,6 +25,7 @@
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "amazon-cognito-identity-js": "^5.2.9",
     "framer-motion": "^6",
     "i18next": "^21.8.5",
     "react": "^18.0.0",
