@@ -189,8 +189,6 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
     }
   }, [client, data, fetcher]);
 
-  console.log({ status: value.status });
-
   return (
     <SessionService.Provider value={value}>{children}</SessionService.Provider>
   );
