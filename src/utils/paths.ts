@@ -1,5 +1,5 @@
 export const paths = {
-  signIn: "/",
+  root: "/",
   signUp: "/signUp",
   verify: "/verify",
   dashboard: "/dashboard",

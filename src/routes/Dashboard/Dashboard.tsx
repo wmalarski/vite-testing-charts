@@ -1,27 +1,19 @@
-import { useSessionStatus } from "@services/SessionService";
-import { paths } from "@utils/paths";
+import { useAuthService } from "@services/SessionService";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useLocation } from "react-router-dom";
+import { useMutation } from "react-query";
 
-type Props = {
-  data?: string;
-};
-
-const Dashboard = ({ data }: Props): ReactElement => {
+const Dashboard = (): ReactElement => {
   const { t } = useTranslation("common", { keyPrefix: "Dashboard" });
 
-  const location = useLocation();
-  const status = useSessionStatus();
+  const authService = useAuthService();
 
-  if (status === "anon") {
-    return <Navigate replace state={{ from: location }} to={paths.signIn} />;
-  }
+  const { mutate } = useMutation(authService.signOut);
 
   return (
     <div>
       <p>{t("Dashboard")}</p>
-      <div>{data}</div>
+      <button onClick={() => mutate()}>SignOut</button>
     </div>
   );
 };
