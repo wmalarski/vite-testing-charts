@@ -1,6 +1,8 @@
 import { useSessionStatus } from "@services/SessionService";
+import { paths } from "@utils/paths";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
+import { Navigate, Outlet } from "react-router";
 
 const Home = (): ReactElement => {
   const { t } = useTranslation("common", { keyPrefix: "Home" });
@@ -8,18 +10,14 @@ const Home = (): ReactElement => {
   const status = useSessionStatus();
 
   if (status === "loading") {
-    return <p>{t("Loading")}</p>;
+    return <span>{t("Loading")}</span>;
   }
 
-  if (status === "anon") {
-    return <p>{t("Redirect to login")}</p>;
+  if (status === "auth") {
+    return <Navigate replace to={paths.dashboard} />;
   }
 
-  return (
-    <div>
-      <p>{t("Home")}</p>
-    </div>
-  );
+  return <Outlet />;
 };
 
 export default Home;
