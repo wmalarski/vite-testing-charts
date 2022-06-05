@@ -1,31 +1,13 @@
-import { useAnonService, useSessionStatus } from "@services/SessionService";
+import { Flex } from "@chakra-ui/react";
+import { useSessionStatus } from "@services/SessionService";
 import { paths } from "@utils/paths";
 import { ReactElement } from "react";
-import { useTranslation } from "react-i18next";
-import { useMutation } from "react-query";
 import { Navigate } from "react-router-dom";
-
-const SignInForm = (): ReactElement => {
-  const { t } = useTranslation("common", { keyPrefix: "SignIn" });
-
-  const anonService = useAnonService();
-
-  const { mutate } = useMutation(anonService.signIn);
-
-  return (
-    <div>
-      <h1>Auth</h1>
-      <p>{t("SignIn")}</p>
-      <button onClick={() => mutate({ password: "p", username: "u" })}>
-        Sign In
-      </button>
-    </div>
-  );
-};
+import { SignInForm } from "./SignInForm/SignInForm";
+import { SignUpForm } from "./SignUpForm/SignUpForm";
+import { VerifyCodeForm } from "./VerifyCodeForm/VerifyCodeForm";
 
 const SignIn = (): ReactElement => {
-  const { t } = useTranslation("common", { keyPrefix: "SignIn" });
-
   const status = useSessionStatus();
 
   if (status === "auth") {
@@ -33,11 +15,11 @@ const SignIn = (): ReactElement => {
   }
 
   return (
-    <div>
-      <h1>Auth</h1>
-      <p>{t("SignIn")}</p>
+    <Flex flexDirection="column">
       <SignInForm />
-    </div>
+      <SignUpForm />
+      <VerifyCodeForm />
+    </Flex>
   );
 };
 
