@@ -213,6 +213,11 @@ App is ready to be deployed!
 
 * [amazon cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)
 * [amazon-cognito-identity-js](https://www.npmjs.com/package/amazon-cognito-identity-js)
+* [Accessing resources after sign in](https://docs.aws.amazon.com/cognito/latest/developerguide/accessing-resources.html)
+
+### AWS Amplify
+
+* [docs](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)
 
 ### vite.js
 

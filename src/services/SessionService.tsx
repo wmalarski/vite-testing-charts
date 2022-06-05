@@ -12,7 +12,6 @@ import {
   createContext,
   ReactElement,
   ReactNode,
-  useCallback,
   useContext,
   useMemo,
 } from "react";
@@ -104,7 +103,6 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
           refreshToken: session.getRefreshToken().getToken(),
         };
       } catch (err) {
-        // maybe here we can use refresh
         return { status: "anon" };
       }
     },
@@ -113,17 +111,6 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     }
-  );
-
-  const fetcher = useCallback(
-    async (input: RequestInfo, init?: RequestInit): Promise<Response> => {
-      console.log({ data });
-      const response = await fetch(input, init);
-      // check for rejected request
-      console.log({ status: response.status });
-      return response;
-    },
-    [data]
   );
 
   const value = useMemo<SessionServiceValue>(() => {
@@ -152,7 +139,18 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
         return {
           status: "auth",
           value: {
-            fetcher,
+            fetcher: (
+              input: RequestInfo,
+              init?: RequestInit
+            ): Promise<Response> => {
+              return fetch(input, {
+                ...init,
+                headers: {
+                  ...init?.headers,
+                  Authorization: `Bearer ${data.accessToken}`,
+                },
+              });
+            },
             signOut: async () => {
               await signOut();
               client.setQueryData<SessionServiceState>(getSessionQueryKey(), {
@@ -164,7 +162,7 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
       default:
         return { status: "loading" };
     }
-  }, [client, data, fetcher]);
+  }, [client, data]);
 
   return (
     <SessionService.Provider value={value}>{children}</SessionService.Provider>
