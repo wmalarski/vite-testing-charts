@@ -29,7 +29,10 @@ export const SignUpForm = (): ReactElement => {
         </label>
         <label>
           Password
-          <input {...register("password", { required: true })} />
+          <input
+            type="password"
+            {...register("password", { required: true })}
+          />
         </label>
         <button type="submit">Sign up</button>
       </form>

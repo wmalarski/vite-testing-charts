@@ -1,6 +1,11 @@
 import {
+  getSession,
+  signInWithEmail,
   SignInWithEmailArgs,
+  signOut,
+  signUpUserWithEmail,
   SignUpUserWithEmailArgs,
+  verifyCode,
   VerifyCodeArgs,
 } from "@utils/cognito";
 import {
@@ -91,41 +96,22 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
   const { data } = useQuery(
     getSessionQueryKey(),
     async (): Promise<SessionServiceState> => {
-      return await new Promise((resolve) =>
-        setTimeout(() => {
-          const accessToken = window.localStorage.getItem("accessToken");
-          if (!accessToken) {
-            resolve({ status: "anon" });
-          }
-          resolve({
-            status: "auth",
-            accessToken: "1",
-            refreshToken: "2",
-          });
-        }, 500)
-      );
-      // try {
-      //   const session = await getSession();
-      //   return {
-      //     status: "auth",
-      //     accessToken: session.getAccessToken().getJwtToken(),
-      //     refreshToken: session.getRefreshToken().getToken(),
-      //   };
-      // } catch (err) {
-      //   // maybe here we can use refresh
-      //   return { status: "anon" };
-      // }
+      try {
+        const session = await getSession();
+        return {
+          status: "auth",
+          accessToken: session.getAccessToken().getJwtToken(),
+          refreshToken: session.getRefreshToken().getToken(),
+        };
+      } catch (err) {
+        // maybe here we can use refresh
+        return { status: "anon" };
+      }
     },
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-      onSuccess: (result) => {
-        if (result.status === "auth") {
-          window.localStorage.setItem("accessToken", `${result.accessToken}`);
-          window.localStorage.setItem("refreshToken", `${result.refreshToken}`);
-        }
-      },
     }
   );
 
@@ -146,25 +132,19 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
         return {
           status: "anon",
           value: {
-            signIn: async () => {
-              // const session = await signInWithEmail(args);
-              // client.setQueryData<SessionServiceState>(getSessionQueryKey(), {
-              //   status: "auth",
-              //   accessToken: session.getAccessToken().getJwtToken(),
-              //   refreshToken: session.getRefreshToken().getToken(),
-              // });
-              await new Promise((resolve) => setTimeout(() => resolve(0), 500));
+            signIn: async (args) => {
+              const session = await signInWithEmail(args);
               client.setQueryData<SessionServiceState>(getSessionQueryKey(), {
                 status: "auth",
-                accessToken: "1",
-                refreshToken: "2",
+                accessToken: session.getAccessToken().getJwtToken(),
+                refreshToken: session.getRefreshToken().getToken(),
               });
             },
-            signUp: async () => {
-              // await signUpUserWithEmail(args);
+            signUp: async (args) => {
+              await signUpUserWithEmail(args);
             },
-            verifyCode: async () => {
-              // await verifyCode(args);
+            verifyCode: async (args) => {
+              await verifyCode(args);
             },
           },
         };
@@ -174,10 +154,7 @@ export const SessionServiceProvider = ({ children }: Props): ReactElement => {
           value: {
             fetcher,
             signOut: async () => {
-              // await signOut();
-              window.localStorage.removeItem("accessToken");
-              window.localStorage.removeItem("refreshToken");
-              await Promise.resolve(0);
+              await signOut();
               client.setQueryData<SessionServiceState>(getSessionQueryKey(), {
                 status: "anon",
               });

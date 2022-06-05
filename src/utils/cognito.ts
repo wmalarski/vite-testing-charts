@@ -9,8 +9,8 @@ import {
 } from "amazon-cognito-identity-js";
 
 const userPool: CognitoUserPool = new CognitoUserPool({
-  UserPoolId: `${process.env.VITE_USERPOOL_ID}`,
-  ClientId: `${process.env.VITE_CLIENT_ID}`,
+  UserPoolId: `${import.meta.env.VITE_USERPOOL_ID}`,
+  ClientId: `${import.meta.env.VITE_CLIENT_ID}`,
 });
 
 const getCognitoUser = (username: string): CognitoUser => {
