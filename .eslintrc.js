@@ -41,9 +41,6 @@ module.exports = {
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "require-await": "error",
-    "jest/require-hook": "off",
-    "jest/no-hooks": "off",
-    "jest/require-top-level-describe": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
@@ -84,9 +81,6 @@ module.exports = {
   settings: {
     react: {
       version: "detect",
-    },
-    jest: {
-      version: 28,
     },
   },
 };

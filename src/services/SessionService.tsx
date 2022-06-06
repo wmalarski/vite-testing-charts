@@ -15,7 +15,7 @@ export type AnonService = {
   signIn: () => Promise<void>;
 };
 
-type SessionServiceValue =
+export type SessionServiceValue =
   | {
       status: "loading";
     }

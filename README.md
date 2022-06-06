@@ -38,7 +38,6 @@ This is my starter. Project info.
 
 * Redmine
 
-
 ## 📁 Project structure
 
 * `components`

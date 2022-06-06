@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { i18text } from "@tests/i18text";
+import { mockSessionService } from "@tests/mocks/services";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
 import { describe, it } from "vitest";
@@ -24,9 +25,12 @@ describe("<Root />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
-    renderComponent();
+    renderComponent({
+      wrapperProps: { session: mockSessionService("loading") },
+    });
 
-    const header = i18text("Root");
-    await expect(screen.findByText(header)).resolves.toBeInTheDocument();
+    const label = i18text("Root.Loading");
+
+    await expect(screen.findByText(label)).resolves.toBeInTheDocument();
   });
 });

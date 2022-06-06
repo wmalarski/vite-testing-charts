@@ -10,10 +10,7 @@ export default {
 
 type Props = ComponentProps<typeof Root>;
 
-const RootStory = ({
-  wrapperProps,
-  ...props
-}: PropsWithTestWrapper<Props>) => {
+const RootStory = ({ wrapperProps, ...props }: PropsWithTestWrapper<Props>) => {
   return (
     <TestWrapper {...wrapperProps}>
       <Root {...props} />

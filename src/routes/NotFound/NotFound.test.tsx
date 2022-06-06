@@ -1,5 +1,8 @@
+import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import { i18text } from "@tests/i18text";
+import { mockSessionService } from "@tests/mocks/services";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
 import { describe, it } from "vitest";
@@ -24,9 +27,11 @@ describe("<NotFound />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
-    renderComponent();
+    renderComponent({
+      wrapperProps: { session: mockSessionService("auth") },
+    });
 
-    const header = i18text("NotFound");
+    const header = i18text("NotFound.NotFound");
     await expect(screen.findByText(header)).resolves.toBeInTheDocument();
   });
 });

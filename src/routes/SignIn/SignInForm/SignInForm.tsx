@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useMutation } from "react-query";
 
 export const SignInForm = (): ReactElement => {
-  const { t } = useTranslation("common", { keyPrefix: "SignIn" });
+  const { t } = useTranslation("common", { keyPrefix: "SignInForm" });
 
   const anonService = useAnonService();
 
