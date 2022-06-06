@@ -1,4 +1,5 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { mockSessionService } from "@tests/mocks/services";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
 import Root from "./Root";
@@ -20,4 +21,8 @@ const RootStory = ({ wrapperProps, ...props }: PropsWithTestWrapper<Props>) => {
 
 const Story: ComponentStory<typeof RootStory> = RootStory;
 export const Playground = Story.bind({});
-Playground.args = { wrapperProps: {} };
+Playground.args = {
+  wrapperProps: {
+    session: mockSessionService("loading"),
+  },
+};

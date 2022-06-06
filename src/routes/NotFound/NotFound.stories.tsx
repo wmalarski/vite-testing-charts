@@ -1,4 +1,5 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { mockSessionService } from "@tests/mocks/services";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
 import NotFound from "./NotFound";
@@ -23,4 +24,8 @@ const NotFoundStory = ({
 
 const Story: ComponentStory<typeof NotFoundStory> = NotFoundStory;
 export const Playground = Story.bind({});
-Playground.args = { wrapperProps: {} };
+Playground.args = {
+  wrapperProps: {
+    session: mockSessionService("auth"),
+  },
+};

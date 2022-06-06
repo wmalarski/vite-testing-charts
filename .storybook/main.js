@@ -1,3 +1,5 @@
+const tsconfigPaths = require("vite-tsconfig-paths").default;
+
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -13,5 +15,11 @@ module.exports = {
   features: {
     emotionAlias: false,
     storyStoreV7: true,
+  },
+  async viteFinal(config) {
+    return {
+      ...config,
+      plugins: [...config.plugins, tsconfigPaths({})],
+    };
   },
 };
