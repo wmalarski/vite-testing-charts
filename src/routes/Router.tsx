@@ -3,7 +3,7 @@ import { lazy, ReactElement, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
-const Home = lazy(() => import("./Home/Home"));
+const Root = lazy(() => import("./Root/Root"));
 const NotFound = lazy(() => import("./NotFound/NotFound"));
 const SignIn = lazy(() => import("./SignIn/SignIn"));
 
@@ -12,7 +12,7 @@ export const Router = (): ReactElement => {
     <Suspense fallback={null}>
       <BrowserRouter>
         <Routes>
-          <Route element={<Home />} path={paths.root}>
+          <Route element={<Root />} path={paths.root}>
             <Route element={<Dashboard />} index />
             <Route element={<SignIn />} path={paths.signIn} />
           </Route>

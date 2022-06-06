@@ -4,9 +4,9 @@ import { render, screen } from "@testing-library/react";
 import { i18text } from "@tests/i18text";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
-import Home from "./Home";
+import Root from "./Root";
 
-type Props = ComponentProps<typeof Home>;
+type Props = ComponentProps<typeof Root>;
 
 const renderComponent = ({
   wrapperProps,
@@ -16,18 +16,18 @@ const renderComponent = ({
 
   return render(
     <TestWrapper {...wrapperProps}>
-      <Home {...defaultProps} {...props} />
+      <Root {...defaultProps} {...props} />
     </TestWrapper>
   );
 };
 
-describe("<Home />", () => {
+describe("<Root />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
     renderComponent();
 
-    const header = i18text("Home");
+    const header = i18text("Root");
     await expect(screen.findByText(header)).resolves.toBeInTheDocument();
   });
 });

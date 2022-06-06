@@ -4,9 +4,9 @@ import { render, screen } from "@testing-library/react";
 import { i18text } from "@tests/i18text";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
-import { VerifyCodeForm } from "./VerifyCodeForm";
+import { SignOutForm } from "./SignOutForm";
 
-type Props = ComponentProps<typeof VerifyCodeForm>;
+type Props = ComponentProps<typeof SignOutForm>;
 
 const renderComponent = ({
   wrapperProps,
@@ -16,18 +16,18 @@ const renderComponent = ({
 
   return render(
     <TestWrapper {...wrapperProps}>
-      <VerifyCodeForm {...defaultProps} {...props} />
+      <SignOutForm {...defaultProps} {...props} />
     </TestWrapper>
   );
 };
 
-describe("<VerifyCodeForm />", () => {
+describe("<SignOutForm />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
     renderComponent();
 
-    const header = i18text("VerifyCodeForm");
+    const header = i18text("SignOutForm");
     await expect(screen.findByText(header)).resolves.toBeInTheDocument();
   });
 });

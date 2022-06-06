@@ -1,10 +1,10 @@
 import { useSessionStatus } from "@services/SessionService";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 
-const Home = (): ReactElement => {
-  const { t } = useTranslation("common", { keyPrefix: "Home" });
+const Root = (): ReactElement => {
+  const { t } = useTranslation("common", { keyPrefix: "Root" });
 
   const status = useSessionStatus();
 
@@ -15,4 +15,4 @@ const Home = (): ReactElement => {
   return <Outlet />;
 };
 
-export default Home;
+export default Root;

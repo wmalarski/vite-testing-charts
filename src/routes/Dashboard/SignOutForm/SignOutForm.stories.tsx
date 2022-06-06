@@ -1,26 +1,26 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { PropsWithTestWrapper, TestWrapper } from "@tests/TestWrapper";
 import { ComponentProps } from "react";
-import { VerifyCodeForm } from "./VerifyCodeForm";
+import { SignOutForm } from "./SignOutForm";
 
 export default {
-  title: "routes/SignIn/VerifyCodeForm",
-  component: VerifyCodeForm,
-} as ComponentMeta<typeof VerifyCodeForm>;
+  title: "routes/Dashboard/SignOutForm",
+  component: SignOutForm,
+} as ComponentMeta<typeof SignOutForm>;
 
-type Props = ComponentProps<typeof VerifyCodeForm>;
+type Props = ComponentProps<typeof SignOutForm>;
 
-const VerifyCodeFormStory = ({
+const SignOutFormStory = ({
   wrapperProps,
   ...props
 }: PropsWithTestWrapper<Props>) => {
   return (
     <TestWrapper {...wrapperProps}>
-      <VerifyCodeForm {...props} />
+      <SignOutForm {...props} />
     </TestWrapper>
   );
 };
 
-const Story: ComponentStory<typeof VerifyCodeFormStory> = VerifyCodeFormStory;
+const Story: ComponentStory<typeof SignOutFormStory> = SignOutFormStory;
 export const Playground = Story.bind({});
 Playground.args = { wrapperProps: {} };
