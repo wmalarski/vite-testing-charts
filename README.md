@@ -1,24 +1,43 @@
 # React + Vite starter
 
-This is placeholder. Project info.
-
-## 🔗 Links
-
-* Figma
-
-* JIRA
-
-* Docs
+This is my starter. Project info.
 
 ## 🎉 Project setup
 
-1. Install node
+1. Install [node.js](https://nodejs.org/en/). Version should be greater then 16.0.0.
 
-2. Install yarn
+2. Install package manager `yarn`:
 
-### How to run project locally?
+   > `npm install --global yarn`
 
-### Install recommended vscode plugins
+3. Check versions of packages:
+
+   1. Run `node --version` should be greater or equal to v16.10.0.
+
+   2. `npm --version` should be greater or equal to 7.24.0.
+
+4. In project root folder run:
+
+   > `yarn`
+
+   Command will install packages in `node_modules` folder.
+
+5. Run project on your local machine in development mode:
+
+   > `yarn dev`
+
+6. Browser should open automatically. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+7. Make sure to install `prettier` and `eslint` plugins in your code editor. If your are using VsCode install recommended extensions for project (Extensions>Filter Extension>Recommended).
+
+## 🔗 Useful links
+
+* Figma
+
+* Docs
+
+* Redmine
+
 
 ## 📁 Project structure
 
@@ -36,7 +55,7 @@ This is placeholder. Project info.
 
 * `tests`
 
-* `utils`
+* `utils`  - Utility functions used across all components
 
 ## ⛏️ Components structure
 
@@ -53,10 +72,16 @@ Components should have structure:
 * Component.utils.tsx
 >>>
 
-## Environmental variables
+## 📋 Environmental variables
 
-  UserPoolId: `${import.meta.env.VITE_USERPOOL_ID}`,
-  ClientId: `${import.meta.env.VITE_CLIENT_ID}`,
+Documentation is avaliable [here](https://vitejs.dev/guide/env-and-mode.html).  prevent accidentally leaking env variables to the client, only variables prefixed with VITE_ are exposed to your Vite-processed code
+
+Example .env file
+
+```txt
+VITE_USERPOOL_ID=eu-central-1-sdsad
+VITE_CLIENT_ID=qw45ert453yu
+```
 
 ## 📖 Translations
 
@@ -70,11 +95,25 @@ locales
 
 ## 👷 Branches
 
+### Branches naming convention
+
+// TODO
+
+### Feature branches
+
+* `development`
+
+* `integration`
+
+* `main`
+
 ## 👨‍💻 Merge requests
 
 ### Template
 
 ### Code review
+
+2 approves
 
 All team members
 
@@ -84,27 +123,27 @@ All team members
 
 * To create component `Sidebar` in `routes/Home` folder with named export (preferred) run:
 
-  `yarn codegen component named routes/Home/Sidebar`
+  > `yarn codegen component named routes/Home/Sidebar`
 
 * To create component `Dashboard` in `routes` folder with default export run:
 
-  `yarn codegen component default routes/Dashboard`
+  > `yarn codegen component default routes/Dashboard`
 
 ### Create primitive
 
 * To create primitive based on `Button` component from `chakra-ui` run:
 
-  `yarn codegen primitive Button`
+  > `yarn codegen primitive Button`
 
 ### Create context
 
 * To create simple context `UserContext` in `utils` folder run:
 
-  `yarn codegen context simple utils/UserContext`
+  > `yarn codegen context simple utils/UserContext`
 
 * To create service context `ProfileService` in `services` folder with model `Profile`:
 
-  `yarn codegen context service services/ProfileService`
+  > `yarn codegen context service services/ProfileService`
 
   **How to use services?**
 
@@ -132,13 +171,13 @@ App is ready to be deployed!
 
 ### Linters
 
-* `yarn lint`
+* `yarn lint` - Code should follow lint rules specified in [.eslintrc.js](.eslintrc.js). All code should be checked against those rules. You can use yarn lint to see if your code meet lint criteria.
 
-* `yarn prettier`
+* `yarn prettier` - Check and update code style. Prettier can format your code on save. Check [this](https://www.robinwieruch.de/how-to-use-prettier-vscode/) guide to make sure you config is correct.
 
-* `yarn tsc`
+* `yarn tsc` - This command will check code against typescript compiler.
 
-* `yarn code-check`
+* `yarn code-check` - This command will check code against linter, prettier and typescript compiler. This command is run in pipeline. This script is required to pass without warnings.
 
 ### Tests
 
@@ -150,7 +189,7 @@ App is ready to be deployed!
 
 ### Stories
 
-* `yarn storybook`
+* `yarn storybook` - Storybook is place where you can find components in project.
 
 * `yarn build-storybook`
 
@@ -160,9 +199,11 @@ App is ready to be deployed!
 
 ## 🚀 Pipelines
 
+List of pipelines:
+
 ### Install
 
-* `Install`:
+* `Install` - installs all dependencies and saves them to cache.
 
 ### Lint and Test
 
@@ -188,7 +229,9 @@ App is ready to be deployed!
 
 * `Storybook`:
 
-### How to deploy to integration or production?
+## ✅ Do’s and ❌ Don’ts - Best Practices
+
+**🚧WIP🚧To be discussed!!**
 
 ## 📚 Resources
 

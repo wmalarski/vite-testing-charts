@@ -9,7 +9,6 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:promise/recommended",
-    "plugin:jest/all",
     "plugin:testing-library/react",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
