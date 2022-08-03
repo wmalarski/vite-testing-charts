@@ -2,19 +2,26 @@
 import { KonvaEventObject } from "konva/lib/Node";
 import { ReactElement } from "react";
 import { Star } from "react-konva";
-import { SensorState } from "../Playground.utils";
+import { SensorState, Transition } from "../Playground.utils";
 
 type Props = {
+  onDragEnd: (event: Transition<"dragEnd">) => void;
+  onDragStart: (id: string) => void;
   sensor: SensorState;
 };
 
-export const Sensor = ({ sensor }: Props): ReactElement => {
+export const Sensor = ({
+  sensor,
+  onDragStart,
+  onDragEnd,
+}: Props): ReactElement => {
   // const [state, send] = useActor(sensorRef);
   // const [state, send] = useMachine(starsMachine);
   // .
   // const [stars, setStars] = useState(initialState);
 
   const handleDragStart = (e: KonvaEventObject<DragEvent>) => {
+    onDragStart(e.target.id());
     // const id = e.target.id();
     // setStars(
     //   stars.map((star) => {
@@ -25,7 +32,13 @@ export const Sensor = ({ sensor }: Props): ReactElement => {
     //   })
     // );
   };
-  const handleDragEnd = () => {
+  const handleDragEnd = (e: KonvaEventObject<DragEvent>) => {
+    onDragEnd({
+      id: e.target.id(),
+      type: "dragEnd",
+      x: e.target.x(),
+      y: e.target.y(),
+    });
     // setStars(
     //   stars.map((star) => {
     //     return {

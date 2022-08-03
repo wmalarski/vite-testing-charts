@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useMachine } from "@xstate/react";
-import { KonvaEventObject } from "konva/lib/Node";
 import { ReactElement } from "react";
 import { Layer, Stage, Text } from "react-konva";
-import { starsMachine } from "./Playground.utils";
+import { starsMachine, Transition } from "./Playground.utils";
 import { Sensor } from "./Sensor/Sensor";
 
 export const Playground = (): ReactElement => {
@@ -11,8 +10,8 @@ export const Playground = (): ReactElement => {
   // .
   // const [stars, setStars] = useState(initialState);
 
-  const handleDragStart = (e: KonvaEventObject<DragEvent>) => {
-    console.log(e.target.id());
+  const handleDragStart = (id: string) => {
+    send({ type: "dragStart", id });
 
     // send("");
 
@@ -26,7 +25,8 @@ export const Playground = (): ReactElement => {
     //   })
     // );
   };
-  const handleDragEnd = () => {
+  const handleDragEnd = (transition: Transition<"dragEnd">) => {
+    send(transition);
     // setStars(
     //   stars.map((star) => {
     //     return {
@@ -42,7 +42,12 @@ export const Playground = (): ReactElement => {
       <Layer>
         <Text text="Try to drag a star" />
         {state.context.sensors.map((sensor) => (
-          <Sensor key={sensor.id} sensor={sensor} />
+          <Sensor
+            key={sensor.id}
+            onDragEnd={handleDragEnd}
+            onDragStart={handleDragStart}
+            sensor={sensor}
+          />
         ))}
       </Layer>
     </Stage>
