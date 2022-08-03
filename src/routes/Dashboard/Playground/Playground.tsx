@@ -12,29 +12,9 @@ export const Playground = (): ReactElement => {
 
   const handleDragStart = (id: string) => {
     send({ type: "dragStart", id });
-
-    // send("");
-
-    // const id = e.target.id();
-    // setStars(
-    //   stars.map((star) => {
-    //     return {
-    //       ...star,
-    //       isDragging: star.id === id,
-    //     };
-    //   })
-    // );
   };
   const handleDragEnd = (transition: Transition<"dragEnd">) => {
     send(transition);
-    // setStars(
-    //   stars.map((star) => {
-    //     return {
-    //       ...star,
-    //       isDragging: false,
-    //     };
-    //   })
-    // );
   };
 
   return (
