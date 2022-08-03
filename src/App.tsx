@@ -1,3 +1,4 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import { Router } from "@routes/Router";
 import { SessionServiceProvider } from "@services/SessionService";
 import i18next from "@utils/i18next";
@@ -12,7 +13,9 @@ const App = (): ReactElement => {
     <QueryClientProvider client={client}>
       <I18nextProvider i18n={i18next}>
         <SessionServiceProvider>
-          <Router />
+          <ChakraProvider>
+            <Router />
+          </ChakraProvider>
         </SessionServiceProvider>
       </I18nextProvider>
     </QueryClientProvider>

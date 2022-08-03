@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import { useAuthService } from "@services/SessionService";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,5 +15,5 @@ export const SignOutForm = (): ReactElement => {
     mutate();
   };
 
-  return <button onClick={handleClick}>{t("button")}</button>;
+  return <Button onClick={handleClick}>{t("button")}</Button>;
 };
